@@ -15,9 +15,9 @@
         <ErrorAvatar :errorMessage="errorMessage" :showError="showError" @changeShowError="changeShowError" />
         <AvatarSearch />
         <TableAvatar :avatars="avatars" />
-      <div>
-        <BarChart v-if="dataLoaded" :avatarsData="chartData"/>
-      </div>
+        <div>
+            <BarChart v-if="dataLoaded" :avatarsData="chartData" />
+        </div>
     </div>
 </template>
 <script>
@@ -40,12 +40,12 @@ export default {
                 labels: [''],
                 datasets: []
             },
-          dataLoaded: false
+            dataLoaded: false
         };
     },
     components: { TableAvatar, AvatarSearch, ErrorAvatar, BarChart },
     mounted() {
-      const ctx = document.getElementById('myChart');
+        const ctx = document.getElementById('myChart');
         axios.get('https://api.github.com/users')
             .then(async response => {
                 this.avatars = response.data.slice(0, 10);
@@ -83,15 +83,15 @@ export default {
         },
         async processAvatars() {
             for (const element of this.avatars) {
-              axios.get('https://api.github.com/users/' + element.login).then(response => {
+                axios.get('https://api.github.com/users/' + element.login).then(response => {
                     let newDataset = {
                         label: response.data.login,
                         data: [response.data.followers],
                     };
                     this.chartData.datasets.push(newDataset)
-                  if(this.chartData.datasets.length ===10){
-                    this.dataLoaded = true
-                  }
+                    if (this.chartData.datasets.length === 10) {
+                        this.dataLoaded = true
+                    }
                 })
             }
         }

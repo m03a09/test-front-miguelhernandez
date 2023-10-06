@@ -1,5 +1,5 @@
 <template>
-    <Bar id="my-chart-id" :options="chartOptions" :data="avatarsData" />
+  <Bar id="my-chart-id" :options="chartOptions" :data="avatarsData" />
 </template>
 
 <script>
@@ -9,39 +9,26 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
-    name: 'BarChart',
-    components: { Bar },
-    data() {
-        return {
-            /*chartData: {
-              labels: ['January', 'February', 'March'],
-              datasets: [
-                {
-                  label: 'a',
-                  data: [1, 2, 3],
-                },
-                {
-                  label: 'b',
-                  data: [4, 5, 6],
-                }
-              ]
-            },*/
-            chartOptions: {
-                responsive: true,
-              plugins: {
-                title: {
-                  display: true,
-                  text: 'Followers'
-                }
-              }
-            }
+  name: 'BarChart',
+  components: { Bar },
+  data() {
+    return {
+      chartOptions: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Followers'
+          }
         }
-    },
-    props: {
-      avatarsData: {
-            required:true
-        }
+      }
     }
+  },
+  props: {
+    avatarsData: {
+      required: true
+    }
+  }
 
 }
 </script>
